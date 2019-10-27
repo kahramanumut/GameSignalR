@@ -1,0 +1,61 @@
+<div class="col-md-2">
+<input class="form-control" placeholder="Kullanıcı adınız" [(ngModel)]="username" />
+<button class="btn btn-primary btn-block" (click)="setUsername()">Gönder</button>
+</div>
+<div class="list-group col-md-2" *ngFor="let item of userList">
+  <button (click)="sendRequest(item.clientId)" class="list-group-item list-group-item-action">{{item.username}}</button>
+</div>
+<div class="score-board">
+  <div id="user-label" class="badge">sen</div>
+  <div id="computer-label" class="badge">pc</div>
+  <span id="user-score">0</span>:<span id="pc-score">0</span>
+</div>
+<div class="result">
+
+</div>
+<div class="choices">
+  <div class="choice" id="r">
+    <img src="./assets/rock.png" (click)="setUserChoice('r')" alt="Taş" width="60" height="60" />
+  </div>
+  <div class="choice" id="p">
+    <img src="./assets/paper.png" (click)="setUserChoice('p')" alt="Kağıt" width="60" height="60" />
+  </div>
+  <div class="choice" id="s">
+    <img src="./assets/makas.png" (click)="setUserChoice('s')" alt="Makas" width="60" height="60" />
+  </div>
+</div>
+<p id="message">
+  <a href="https://tr.linkedin.com/in/cengizguzel" target="_blank"
+    ><i class="fa fa-linkedin" style="font-size:20px;color:white;"></i
+  ></a>
+</p>
+
+<button id="openModal" #openModal [hidden]="true" 
+ data-toggle="modal" data-target="#requestModal"></button>
+
+<div class="modal fade" id="requestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Yeni oyun isteği</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <strong>{{requestUser.username}}</strong> size oyuna davet ediyor.
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Reddet</button>
+        <button type="button" (click)="acceptGameRequest(requestUser.clientId)" class="btn btn-primary">Kabul Et</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./assets/app.js" charset="utf-8"></script>
+<!--<script src="./Taş Kağıt Makas_files/signalr.min.js" charset="utf-8"></script>
+  <script src="./Taş Kağıt Makas_files/game.js" charset="utf-8"></script> -->
+
+<router-outlet></router-outlet>
